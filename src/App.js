@@ -11,7 +11,7 @@ class App extends Component {
     super(props);
     this.state = {
       selectedItems: [],
-      coop: [],
+      maxima: [],
     };
     $.ajaxPrefilter(function (options) {
       if (options.crossDomain && $.support.cors) {
@@ -29,10 +29,10 @@ class App extends Component {
 
   componentDidMount() {
     $.get(
-      'https://ecoop.ee/api/v1/products?page=1&ordering=popularity&category=15',
+      'api/maxima',
       (response) => {
         this.setState({
-          coop: response.results,
+          maxima: response,
         })
         console.log(response);
       });
@@ -53,7 +53,10 @@ class App extends Component {
             enableDeselect
             onSelectionFinish={this.handleSelectionFinish}
           >
-            <ProductList items={this.state.coop} />
+            <ProductList
+              items={this.state.maxima}
+              imgBaseUrl={'https://www.e-maxima.ee'}
+            />
           </SelectableGroup>
         </div>
 

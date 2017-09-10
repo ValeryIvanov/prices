@@ -11,6 +11,7 @@
     "react-scripts": "1.0.13",
     "react-selectable-fast": "^2.0.3"
   },
+  "proxy": "http://localhost:4040",
   "scripts": {
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",

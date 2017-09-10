@@ -8,15 +8,17 @@ class Product extends Component {
             selecting,
             selected,
             item,
+            imgBaseUrl,
         } = this.props;
         return (
             <div
                 ref={selectableRef}
                 className={`item ${selecting && 'selecting'} ${selected && 'selected'}`}
             >
-                <img src={`https://ecoop.ee/${item.images[0].productimage}`} alt=""/>
-                <h4>{item.name}</h4>
-                <b>{item.sell_price}</b>
+                <img src={`${imgBaseUrl}/${item.img}`} alt=""/>
+                <h4>{item.product}</h4>
+                <b>{item.price}</b>
+                <b>{item.unitprice}</b>
             </div>
         );
     }

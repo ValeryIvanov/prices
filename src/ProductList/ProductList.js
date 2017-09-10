@@ -20,6 +20,7 @@ class ProductList extends Component {
                         <Product
                             key={`${i}`}
                             item={item}
+                            imgBaseUrl={this.props.imgBaseUrl}
                         />
                     ))}
                 </div>

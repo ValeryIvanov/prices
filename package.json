@@ -7,9 +7,9 @@
     "node-sass-chokidar": "^0.0.3",
     "npm-run-all": "^4.1.1",
     "react": "^15.6.1",
+    "react-bootstrap": "^0.31.3",
     "react-dom": "^15.6.1",
-    "react-scripts": "1.0.13",
-    "react-selectable-fast": "^2.0.3"
+    "react-scripts": "1.0.13"
   },
   "proxy": "http://localhost:4040",
   "scripts": {

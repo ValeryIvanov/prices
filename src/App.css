@@ -1,38 +1,18 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
 .App {
+  font-family: 'Roboto', sans-serif;
   text-align: center; }
 
-.item {
-  position: relative;
-  width: 145px;
-  min-height: 125px;
-  margin: 2px;
-  float: left;
-  text-align: center;
-  border: 1px solid #ccc;
-  padding: 10px;
-  overflow: hidden; }
-  .item img {
-    max-height: 95px; }
+.product img {
+  max-height: 95px; }
 
-.item .tick {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  font-size: 10px;
-  color: #009688;
-  font-weight: bold;
-  cursor: pointer; }
+.product .left {
+  width: 50%;
+  float: left; }
 
-.item h2 {
-  font-size: 14px;
-  margin-top: 0;
-  margin-bottom: 0;
-  color: inherit;
-  font-weight: 600; }
+.product .right {
+  width: 50%;
+  float: right; }
 
-.item.selected {
-  background: rebeccapurple;
-  color: white; }
-
-.item.selecting {
-  border: 1px solid rebeccapurple; }
+.product .price {
+  display: block; }

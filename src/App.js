@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { SelectableGroup } from 'react-selectable-fast';
 import logo from './logo.svg';
 import ProductList from './ProductList/ProductList';
 import $ from 'jquery';
@@ -42,22 +41,19 @@ class App extends Component {
     const { selectedItems, } = this.state;
     return (
       <div className="App">
-
-        <div>
-          <p>
-            Selected: <span className="counter">{selectedItems.length}</span>
-          </p>
-          <SelectableGroup
-            className="main"
-            clickClassName="tick"
-            enableDeselect
-            onSelectionFinish={this.handleSelectionFinish}
-          >
-            <ProductList
-              items={this.state.maxima}
-              imgBaseUrl={'https://www.e-maxima.ee'}
-            />
-          </SelectableGroup>
+        <div className="jumbotron">
+          <div className="container"></div>
+        </div>
+        <div className="container">
+          <div className="row">
+            <div className="col-md-4">
+              <h1>Maxima</h1>
+              <ProductList
+                items={this.state.maxima}
+                imgBaseUrl={'https://www.e-maxima.ee'}
+              />
+            </div>
+          </div>
         </div>
 
       </div>

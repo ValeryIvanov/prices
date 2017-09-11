@@ -1,30 +1,33 @@
 import React, { Component } from 'react';
-import { SelectAll, DeselectAll } from 'react-selectable-fast';
+import { ListGroup, ListGroupItem } from 'react-bootstrap';
 import Product from '../Product/Product';
 
 class ProductList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            i: 0,
+        };
+    }
     render() {
+        const {
+            imgBaseUrl,
+        } = this.props;
         return (
-            <div >
-                <p className="not-selectable">Press ESC to clear selection</p>
-                <div>
-                    <SelectAll className="selectable-button">
-                        <button>Select all</button>
-                    </SelectAll>
-                    <DeselectAll className="selectable-button">
-                        <button>Clear selection</button>
-                    </DeselectAll>
-                </div>
-                <div className="albums">
-                    {this.props.items.map((item, i) => (
+            <ListGroup>
+                {this.props.items.map((item, i) => (
+                    <ListGroupItem
+                        key={i}
+                        onClick={() => this.setState({selected: i})}
+                        active={this.state.selected === i}
+                    >
                         <Product
-                            key={`${i}`}
                             item={item}
-                            imgBaseUrl={this.props.imgBaseUrl}
+                            imgBaseUrl={imgBaseUrl}
                         />
-                    ))}
-                </div>
-            </div >
+                    </ListGroupItem>
+                ))}
+            </ListGroup>
         );
     }
 }

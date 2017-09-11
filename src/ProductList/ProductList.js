@@ -12,22 +12,26 @@ class ProductList extends Component {
     render() {
         const {
             imgBaseUrl,
+            name,
         } = this.props;
         return (
-            <ListGroup>
-                {this.props.items.map((item, i) => (
-                    <ListGroupItem
-                        key={i}
-                        onClick={() => this.setState({selected: i})}
-                        active={this.state.selected === i}
-                    >
-                        <Product
-                            item={item}
-                            imgBaseUrl={imgBaseUrl}
-                        />
-                    </ListGroupItem>
-                ))}
-            </ListGroup>
+            <div className="col-md-4">
+                <h1>{name}</h1>
+                <ListGroup>
+                    {this.props.items.map((item, i) => (
+                        <ListGroupItem
+                            key={i}
+                            onClick={() => this.setState({selected: i})}
+                            active={this.state.selected === i}
+                        >
+                            <Product
+                                item={item}
+                                imgBaseUrl={imgBaseUrl}
+                            />
+                        </ListGroupItem>
+                    ))}
+                </ListGroup>
+            </div>
         );
     }
 }

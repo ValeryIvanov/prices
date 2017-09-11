@@ -9,20 +9,14 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedItems: [],
       maxima: [],
+      selver: [],
     };
     $.ajaxPrefilter(function (options) {
       if (options.crossDomain && $.support.cors) {
         var http = (window.location.protocol === 'http:' ? 'http:' : 'https:');
         options.url = http + '//cors-anywhere.herokuapp.com/' + options.url;
       }
-    });
-  }
-
-  handleSelectionFinish = selectedItems => {
-    this.setState({
-      selectedItems,
     });
   }
 
@@ -35,10 +29,17 @@ class App extends Component {
         })
         console.log(response);
       });
+    $.get(
+      'api/selver',
+      (response) => {
+        this.setState({
+          selver: response,
+        })
+        console.log(response);
+      });
   }
 
   render() {
-    const { selectedItems, } = this.state;
     return (
       <div className="App">
         <div className="jumbotron">
@@ -46,16 +47,18 @@ class App extends Component {
         </div>
         <div className="container">
           <div className="row">
-            <div className="col-md-4">
-              <h1>Maxima</h1>
               <ProductList
+                name={'Maxima'}
                 items={this.state.maxima}
                 imgBaseUrl={'https://www.e-maxima.ee'}
               />
-            </div>
+              <ProductList
+                name={'Selver'}
+                items={this.state.selver}
+                imgBaseUrl={''}
+              />
           </div>
         </div>
-
       </div>
     );
   }

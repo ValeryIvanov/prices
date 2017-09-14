@@ -11,6 +11,7 @@ class App extends Component {
     this.state = {
       maxima: [],
       selver: [],
+      product: '',
     };
     $.ajaxPrefilter(function (options) {
       if (options.crossDomain && $.support.cors) {
@@ -21,8 +22,16 @@ class App extends Component {
   }
 
   componentDidMount() {
+
+  }
+
+  updateProducts = (e) => {
+    const product = e.currentTarget.value;
+    this.setState({
+      product,
+    });
     $.get(
-      'api/maxima',
+      'api/maxima?q=' + product,
       (response) => {
         this.setState({
           maxima: response,
@@ -30,7 +39,7 @@ class App extends Component {
         console.log(response);
       });
     $.get(
-      'api/selver',
+      'api/selver?q=' + product,
       (response) => {
         this.setState({
           selver: response,
@@ -46,6 +55,23 @@ class App extends Component {
           <div className="container"></div>
         </div>
         <div className="container">
+          <div className="row">
+            <form className="form-horizontal">
+              <div className="form-group">
+                  <label htmlFor="product" className="col-sm-2 control-label">Search for product</label>
+                  <div className="col-sm-8">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="product"
+                      placeholder="Start typing..."
+                      value={this.state.product}
+                      onChange={this.updateProducts}
+                      />
+                  </div>
+                </div>
+            </form>
+          </div>
           <div className="row">
               <ProductList
                 name={'Maxima'}

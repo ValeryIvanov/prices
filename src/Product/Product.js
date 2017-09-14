@@ -7,6 +7,8 @@ class Product extends Component {
             imgBaseUrl,
         } = this.props;
         const img = imgBaseUrl(item.img);
+        const price = parseFloat(item.price).toFixed(2);
+        const unitprice = parseFloat(item.unitprice).toFixed(2);
         return (
             <div className="product">
                 <div className="left">
@@ -14,8 +16,8 @@ class Product extends Component {
                 </div>
                 <div className="right">
                     <h5 className="name">{item.product}</h5>
-                    <b className="price">{item.price}</b>
-                    <b className="unitprice">{item.unitprice}</b>
+                    <div><b className="price">{price}</b><small> item price</small></div>
+                    <div><b className="unitprice">{unitprice}</b><small> unit price</small></div>
                 </div>
             </div>
         );

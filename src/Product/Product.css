@@ -11,4 +11,4 @@
   overflow: auto; }
 
 .product .price {
-  display: block; }
+  display: inline-block; }

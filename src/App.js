@@ -11,14 +11,10 @@ class App extends Component {
     this.state = {
       maxima: [],
       selver: [],
+      coop: [],
+      prisma: [],
       product: '',
     };
-    $.ajaxPrefilter(function (options) {
-      if (options.crossDomain && $.support.cors) {
-        var http = (window.location.protocol === 'http:' ? 'http:' : 'https:');
-        options.url = http + '//cors-anywhere.herokuapp.com/' + options.url;
-      }
-    });
   }
 
   componentDidMount() {
@@ -36,7 +32,6 @@ class App extends Component {
         this.setState({
           maxima: response,
         })
-        console.log(response);
       });
     $.get(
       'api/selver?q=' + product,
@@ -44,7 +39,20 @@ class App extends Component {
         this.setState({
           selver: response,
         })
-        console.log(response);
+      });
+    $.get(
+      'api/coop?q=' + product,
+      (response) => {
+        this.setState({
+          coop: response,
+        })
+      });
+    $.get(
+      'api/prisma?q=' + product,
+      (response) => {
+        this.setState({
+          prisma: response,
+        })
       });
   }
 
@@ -55,33 +63,41 @@ class App extends Component {
           <div className="container"></div>
         </div>
         <div className="container">
-          <div className="row">
-            <form className="form-horizontal">
-              <div className="form-group">
-                  <label htmlFor="product" className="col-sm-2 control-label">Search for product</label>
-                  <div className="col-sm-8">
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="product"
-                      placeholder="Start typing..."
-                      value={this.state.product}
-                      onChange={this.updateProducts}
-                      />
-                  </div>
+          <form className="form-horizontal">
+            <div className="form-group">
+                <label htmlFor="product" className="col-md-2 control-label">Search for product</label>
+                <div className="col-md-10">
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="product"
+                    placeholder="Start typing..."
+                    value={this.state.product}
+                    onChange={this.updateProducts}
+                    />
                 </div>
-            </form>
-          </div>
+              </div>
+          </form>
           <div className="row">
               <ProductList
                 name={'Maxima'}
                 items={this.state.maxima}
-                imgBaseUrl={'https://www.e-maxima.ee'}
+                imgBaseUrl={(img) => `https://www.e-maxima.ee/${img}`}
               />
               <ProductList
                 name={'Selver'}
                 items={this.state.selver}
-                imgBaseUrl={''}
+                imgBaseUrl={(img) => `${img}`}
+              />
+              <ProductList
+                name={'Coop'}
+                items={this.state.coop}
+                imgBaseUrl={(img) => `https://ecoop.ee/${img}`}
+              />
+              <ProductList
+                name={'Prisma'}
+                items={this.state.prisma}
+                imgBaseUrl={(img) => `https://s3-eu-west-1.amazonaws.com/balticsimages/images/180x220/${img}.png`}
               />
           </div>
         </div>

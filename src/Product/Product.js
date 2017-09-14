@@ -6,13 +6,14 @@ class Product extends Component {
             item,
             imgBaseUrl,
         } = this.props;
+        const img = imgBaseUrl(item.img);
         return (
             <div className="product">
                 <div className="left">
-                    <img src={`${imgBaseUrl}/${item.img}`} alt=""/>
+                    <img src={img} alt=""/>
                 </div>
                 <div className="right">
-                    <h4 className="name">{item.product}</h4>
+                    <h5 className="name">{item.product}</h5>
                     <b className="price">{item.price}</b>
                     <b className="unitprice">{item.unitprice}</b>
                 </div>

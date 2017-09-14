@@ -7,7 +7,8 @@
 
 .product .right {
   width: 50%;
-  float: right; }
+  float: right;
+  overflow: auto; }
 
 .product .price {
   display: block; }

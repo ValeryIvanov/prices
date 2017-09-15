@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {observer} from "mobx-react";
 
 class Product extends Component {
     render() {
@@ -24,4 +25,4 @@ class Product extends Component {
     }
 }
 
-export default Product;
+export default observer(Product);

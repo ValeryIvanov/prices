@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { ListGroup, ListGroupItem } from 'react-bootstrap';
+import {observer} from "mobx-react";
 import Product from '../Product/Product';
 
 class ProductList extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            selected: null,
-        };
     }
-    handleOnClick = (i) => {
-        if (this.state.selected === i) this.setState({selected: null});
-        else this.setState({selected: i});
+    handleOnClick = (item, i) => {
+        if (this.props.selected === i) {
+            this.props.onSelect(null);
+        } else {
+            this.props.onSelect({product: item, index: i});
+        }
     };
     render() {
         const {
@@ -25,8 +26,8 @@ class ProductList extends Component {
                     {this.props.items.map((item, i) => (
                         <ListGroupItem
                             key={i}
-                            onClick={() => this.handleOnClick(i)}
-                            active={this.state.selected === i}
+                            onClick={() => this.handleOnClick(item, i)}
+                            active={this.props.selected === i}
                         >
                             <Product
                                 item={item}
@@ -40,4 +41,4 @@ class ProductList extends Component {
     }
 }
 
-export default ProductList;
+export default observer(ProductList);

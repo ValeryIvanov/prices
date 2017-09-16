@@ -9,7 +9,7 @@
     .right {
         width: 50%;
         float: right;
-        overflow: auto;
+        word-wrap: break-word;
     }
     .price {
         display: inline-block;

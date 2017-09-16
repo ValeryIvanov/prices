@@ -10,6 +10,7 @@ class Product extends Component {
         const img = imgBaseUrl(item.img);
         const price = parseFloat(item.price).toFixed(2);
         const unitprice = parseFloat(item.unitprice).toFixed(2);
+        const ts = new Date(item['scrapy-mongodb'].ts).toDateString();
         return (
             <div className="product">
                 <div className="left">
@@ -19,6 +20,7 @@ class Product extends Component {
                     <h5 className="name">{item.product}</h5>
                     <div><b className="price">{price}</b><small> item price</small></div>
                     <div><b className="unitprice">{unitprice}</b><small> unit price</small></div>
+                    <div><small>{ts}</small></div>
                 </div>
             </div>
         );

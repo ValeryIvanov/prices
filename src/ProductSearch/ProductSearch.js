@@ -3,8 +3,13 @@ import {observer, inject} from "mobx-react";
 
 class ProductSearch extends Component {
     onChange = (e) => {
-        this.props.store.appStore.product = e.currentTarget.value; 
-        this.props.store.appStore.updateProducts();
+        const appStore = this.props.store.appStore;
+        const cartStore = this.props.store.cartStore;
+        appStore.product = e.currentTarget.value;
+        if (!cartStore.selectedMaximaProduct) appStore.updateMaximaProducts();
+        if (!cartStore.selectedSelverProduct) appStore.updateSelverProducts();
+        if (!cartStore.selectedCoopProduct) appStore.updateCoopProducts();
+        if (!cartStore.selectedPrismaProduct) appStore.updatePrismaProducts();
     };
     render() {
         return (

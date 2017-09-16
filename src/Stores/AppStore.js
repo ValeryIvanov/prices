@@ -10,7 +10,7 @@ export default class AppStore {
             prisma: [],
             product: '',
             viewProducts: true,
-            updateProducts: action(function() {
+            updateProducts: action(() => {
                 $.get(
                     'api/maxima?q=' + this.product,
                     (response) => {

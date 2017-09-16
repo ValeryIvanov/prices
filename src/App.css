@@ -17,3 +17,6 @@
 
 .product .price {
   display: inline-block; }
+
+th {
+  text-align: center; }

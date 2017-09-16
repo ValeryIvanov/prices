@@ -17,12 +17,10 @@ export default class CartStore {
                 this.maxima.push(this.selectedMaximaProduct.product);
                 this.prisma.push(this.selectedPrismaProduct.product);
                 this.selver.push(this.selectedSelverProduct.product);
-                console.log('added products to cart');
                 this.selectedCoopProduct = null;
                 this.selectedMaximaProduct = null;
                 this.selectedPrismaProduct = null;
                 this.selectedSelverProduct = null;
-                console.log('cleared selected products');
             }),
             get addToCartButtonDisabled() {
                 return this.selectedMaximaProduct === null ||

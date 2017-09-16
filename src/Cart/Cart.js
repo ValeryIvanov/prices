@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import {observer, inject} from "mobx-react";
 
 class Cart extends Component {
+    removeProduct = (i) => {
+        this.props.store.cartStore.maxima.splice(i, 1);
+        this.props.store.cartStore.coop.splice(i, 1);
+        this.props.store.cartStore.selver.splice(i, 1);
+        this.props.store.cartStore.prisma.splice(i, 1);
+    };
     render() {
         const store = this.props.store.cartStore;
         const productView = (product) => {
@@ -17,6 +23,7 @@ class Cart extends Component {
                 <table className="table">
                     <thead>
                         <tr>
+                            <th>Remove item</th>
                             <th>Maxima</th>
                             <th>Coop</th>
                             <th>Selver</th>
@@ -25,8 +32,13 @@ class Cart extends Component {
                     </thead>
                     <tbody>
                         {store.maxima.map((e, i) => {
-                            console.log(e); return (
-                            <tr>
+                            return (
+                            <tr key={i}>
+                                <td>
+                                    <button type="button" className="btn btn-default btn-sm" onClick={() => this.removeProduct(i)}>
+                                        <span className="glyphicon glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </td>
                                 {productView(store.maxima[i])}
                                 {productView(store.coop[i])}
                                 {productView(store.selver[i])}
@@ -34,6 +46,7 @@ class Cart extends Component {
                             </tr>)
                         })}
                         <tr>
+                            <td></td>
                             <td>Total price: <b>{store.maximaTotalPrice}</b></td>
                             <td>Total price: <b>{store.coopTotalPrice}</b></td>
                             <td>Total price: <b>{store.selverTotalPrice}</b></td>

@@ -15,7 +15,7 @@ class ProductSearch extends Component {
         return (
             <form className="form-horizontal">
                 <div className="form-group">
-                    <label htmlFor="product" className="col-md-2 control-label">Search for product</label>
+                    <label htmlFor="product" style={{'textAlign': 'left'}} className="col-md-2 control-label">Search for product</label>
                     <div className="col-md-10">
                         <input
                             type="text"

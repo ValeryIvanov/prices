@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {observer, Provider} from "mobx-react";
+import classNames from "classnames";
 import logo from './logo.svg';
 import ProductsView from './ProductsView/ProductsView';
 import ProductSearch from './ProductSearch/ProductSearch';
@@ -15,6 +16,20 @@ class App extends Component {
     }
 
     render() {
+        const cartStore = this.store.cartStore;
+        const appStore = this.store.appStore;
+        const cartBtnClass = classNames(
+            'btn btn-default btn-primary', {active: !appStore.viewProducts}
+        );
+        const productBtnClass = classNames(
+            'btn btn-default btn-primary', {active: appStore.viewProducts}
+        );
+        const addToCartBtnClass = classNames(
+            'btn btn-default pull-left', {
+                'btn-success': !cartStore.addToCartButtonDisabled,
+                'btn-danger': cartStore.addToCartButtonDisabled,
+            },
+        );
         return (
             <Provider store={this.store}>
                 <div className="App">
@@ -24,11 +39,15 @@ class App extends Component {
                     <div className="container">
                         <ProductSearch />
                         <form className="form-horizontal">
-                            <button className="btn btn-default" type="button"
-                                disabled={this.store.cartStore.addToCartButtonDisabled}
-                                onClick={this.store.cartStore.addProductsToCart}>Add to cart</button>
-                            <button className="btn btn-default" type="button" onClick={() => this.store.appStore.viewProducts = false}>View cart</button>
-                            <button className="btn btn-default" type="button" onClick={() => this.store.appStore.viewProducts = true}>View products</button>
+                            <div className="btn-toolbar">
+                            <button className={addToCartBtnClass} type="button"
+                                disabled={cartStore.addToCartButtonDisabled}
+                                onClick={cartStore.addProductsToCart}>Add to cart</button>
+                            <div className="btn-group pull-right">
+                                <button className={cartBtnClass} type="button" onClick={() => appStore.viewProducts = false}>View cart</button>
+                                <button className={productBtnClass} type="button" onClick={() => appStore.viewProducts = true}>View products</button>
+                            </div>
+                            </div>
                         </form>
                         {this.store.appStore.viewProducts ? <ProductsView /> : <Cart />}
                     </div>

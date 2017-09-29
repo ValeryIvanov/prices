@@ -4,9 +4,6 @@ import {observer} from "mobx-react";
 import Product from '../Product/Product';
 
 class ProductList extends Component {
-    constructor(props) {
-        super(props);
-    }
     handleOnClick = (item, i) => {
         if (this.props.selected === i) {
             this.props.onSelect(null);

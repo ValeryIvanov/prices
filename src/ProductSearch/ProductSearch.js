@@ -4,13 +4,12 @@ import {observer, inject} from "mobx-react";
 class ProductSearch extends Component {
     onChange = (e) => {
         const appStore = this.props.store.appStore;
-        const cartStore = this.props.store.cartStore;
         appStore.product = e.currentTarget.value;
         appStore.updateProducts();
     };
     render() {
         return (
-            <form className="form-horizontal">
+            <form className="form-horizontal" onSubmit={e => e.preventDefault()}>
                 <div className="form-group">
                     <label htmlFor="product" style={{'textAlign': 'left'}} className="col-md-2 control-label">Search for product</label>
                     <div className="col-md-10">

@@ -1,5 +1,4 @@
 import {extendObservable, action} from 'mobx';
-import $ from 'jquery';
 
 export default class CartStore {
     constructor() {

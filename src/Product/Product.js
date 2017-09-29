@@ -9,7 +9,7 @@ class Product extends Component {
         } = this.props;
         const img = imgBaseUrl(item.img);
         const price = parseFloat(item.price).toFixed(2);
-        const unitprice = parseFloat(item.unitprice).toFixed(2);
+        const unitprice = parseFloat(item.unitprice || item.price).toFixed(2);
         const ts = new Date(item['scrapy-mongodb'].ts).toDateString();
         return (
             <div className="product">

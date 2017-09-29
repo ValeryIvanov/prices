@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {observer, inject} from "mobx-react";
+import classNames from "classnames";
 
 class Cart extends Component {
     removeProduct = (i) => {
@@ -14,11 +15,18 @@ class Cart extends Component {
             return (
                 <td>
                     <h5>{product.product}</h5>
-                    <div><b>{parseFloat(product.unitprice).toFixed(2)}</b><small> unit price</small></div>
+                    <div><b>{parseFloat(product.unitprice || product.price).toFixed(2)}</b><small> unit price</small></div>
                 </td>
             )
-        }
+        };
+        const saveCartBtnClass = classNames(
+            'btn btn-default pull-left', {
+                'btn-success': !store.saveCartButtonDisabled,
+                'btn-danger': store.saveCartButtonDisabled,
+            },
+        );
         return (
+            <div>
             <div className="row">
                 <table className="table">
                     <thead>
@@ -54,6 +62,16 @@ class Cart extends Component {
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <div className="row">
+                <form className="form-horizontal" onSubmit={e => e.preventDefault()}>
+                    <div className="btn-toolbar">
+                        <button className={saveCartBtnClass} type="button"
+                            disabled={store.saveCartButtonDisabled}
+                            onClick={store.saveCart}>Save cart</button>
+                    </div>
+                </form>
+            </div>
             </div>
         );
     }

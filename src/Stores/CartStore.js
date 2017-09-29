@@ -1,4 +1,5 @@
-import {extendObservable, action} from 'mobx';
+import {extendObservable, action, toJS} from 'mobx';
+import $ from 'jquery';
 
 export default class CartStore {
     constructor() {
@@ -28,17 +29,39 @@ export default class CartStore {
                     this.selectedPrismaProduct === null;
             },
             get maximaTotalPrice() {
-                return this.maxima.reduce((a, b) => a += parseFloat(b.unitprice), 0).toFixed(2);
+                return this.maxima.reduce((a, b) => a += parseFloat(b.unitprice || b.price), 0).toFixed(2);
             },
             get coopTotalPrice() {
-                return this.coop.reduce((a, b) => a += parseFloat(b.unitprice), 0).toFixed(2);
+                return this.coop.reduce((a, b) => a += parseFloat(b.unitprice || b.price), 0).toFixed(2);
             },
             get selverTotalPrice() {
-                return this.selver.reduce((a, b) => a += parseFloat(b.unitprice), 0).toFixed(2);
+                return this.selver.reduce((a, b) => a += parseFloat(b.unitprice || b.price), 0).toFixed(2);
             },
             get prismaTotalPrice() {
-                return this.prisma.reduce((a, b) => a += parseFloat(b.unitprice), 0).toFixed(2);
+                return this.prisma.reduce((a, b) => a += parseFloat(b.unitprice || b.price), 0).toFixed(2);
             },
+            get saveCartButtonDisabled() {
+                return !this.maxima.length || !this.selver.length || !this.coop.length || !this.prisma.length;
+            },
+            get cart() {
+                return {
+                    ts: new Date(),
+                    cart: {
+                        maxima: toJS(this.maxima),
+                        selver: toJS(this.selver),
+                        coop: toJS(this.coop),
+                        prisma: toJS(this.prisma),
+                    },
+                };
+            },
+            saveCart: action(() => {
+                $.post(
+                    'api/cart',
+                    this.cart,
+                    (response) => {
+                        console.log(response);
+                    });
+            }),
         });
     }
 }

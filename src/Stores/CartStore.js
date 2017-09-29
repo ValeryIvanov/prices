@@ -12,6 +12,7 @@ export default class CartStore {
             selectedSelverProduct: null,
             selectedCoopProduct: null,
             selectedPrismaProduct: null,
+            cartName: '',
             addProductsToCart: action(() => {
                 this.coop.push(this.selectedCoopProduct.product);
                 this.maxima.push(this.selectedMaximaProduct.product);
@@ -41,11 +42,12 @@ export default class CartStore {
                 return this.prisma.reduce((a, b) => a += parseFloat(b.unitprice || b.price), 0).toFixed(2);
             },
             get saveCartButtonDisabled() {
-                return !this.maxima.length || !this.selver.length || !this.coop.length || !this.prisma.length;
+                return !this.maxima.length || !this.selver.length || !this.coop.length || !this.prisma.length || !this.cartName;
             },
             get cart() {
                 return {
                     ts: new Date(),
+                    name: this.cartName,
                     cart: {
                         maxima: toJS(this.maxima),
                         selver: toJS(this.selver),

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {observer, Provider} from "mobx-react";
 import ProductsView from './ProductsView/ProductsView';
-import ProductSearch from './ProductSearch/ProductSearch';
 import ButtonsRow from './ButtonsRow/ButtonsRow';
 import Store from './Stores/Store';
 import Cart from './Cart/Cart';
@@ -24,7 +23,6 @@ class App extends Component {
                         <div className="container"></div>
                     </div>
                     <div className="container">
-                        <ProductSearch />
                         <ButtonsRow />
                         {this.store.appStore.viewProducts ? <ProductsView /> : <Cart />}
                     </div>

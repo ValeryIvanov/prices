@@ -4,5 +4,10 @@
   text-align: center;
 }
 
+.form-horizontal {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 @import 'Product/Product.scss';
 @import 'Cart/Cart.scss';

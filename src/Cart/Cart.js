@@ -9,6 +9,10 @@ class Cart extends Component {
         this.props.store.cartStore.selver.splice(i, 1);
         this.props.store.cartStore.prisma.splice(i, 1);
     };
+    onChange = (e) => {
+        const cartStore = this.props.store.cartStore;
+        cartStore.cartName = e.currentTarget.value;
+    };
     render() {
         const store = this.props.store.cartStore;
         const productView = (product) => {
@@ -20,14 +24,33 @@ class Cart extends Component {
             )
         };
         const saveCartBtnClass = classNames(
-            'btn btn-default pull-left', {
+            'btn btn-default pull-right', {
                 'btn-success': !store.saveCartButtonDisabled,
                 'btn-danger': store.saveCartButtonDisabled,
             },
         );
         return (
             <div>
-            <div className="row">
+                <form className="form-horizontal" onSubmit={e => e.preventDefault()}>
+                    <div className="form-group">
+                        <label htmlFor="cartName" style={{'textAlign': 'left'}} className="col-md-2 control-label">Cart name</label>
+                        <div className="col-md-8">
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="cartName"
+                                value={store.cartName}
+                                placeholder="Name is mandatory"
+                                onChange={this.onChange}
+                            />
+                        </div>
+                        <div className="col-md-2">
+                            <button className={saveCartBtnClass} type="button"
+                                disabled={store.saveCartButtonDisabled}
+                                onClick={store.saveCart}>Save cart</button>
+                        </div>
+                    </div>
+                </form>
                 <table className="table">
                     <thead>
                         <tr>
@@ -62,16 +85,6 @@ class Cart extends Component {
                         </tr>
                     </tbody>
                 </table>
-            </div>
-            <div className="row">
-                <form className="form-horizontal" onSubmit={e => e.preventDefault()}>
-                    <div className="btn-toolbar">
-                        <button className={saveCartBtnClass} type="button"
-                            disabled={store.saveCartButtonDisabled}
-                            onClick={store.saveCart}>Save cart</button>
-                    </div>
-                </form>
-            </div>
             </div>
         );
     }

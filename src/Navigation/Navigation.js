@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Nav, Navbar, NavItem } from 'react-bootstrap';
 import { IndexLinkContainer } from 'react-router-bootstrap';
 
-class ButtonsRow extends Component {
+class Navigation extends Component {
     render() {
         return (
             <Navbar>
@@ -24,4 +24,4 @@ class ButtonsRow extends Component {
     }
 }
 
-export default ButtonsRow;
+export default Navigation;

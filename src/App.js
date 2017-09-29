@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {observer, Provider} from "mobx-react";
 import ProductsView from './ProductsView/ProductsView';
-import ButtonsRow from './ButtonsRow/ButtonsRow';
+import Navigation from './Navigation/Navigation';
 import {
   BrowserRouter as Router,
   Route,
@@ -24,11 +24,8 @@ class App extends Component {
             <Router>
                 <Provider store={this.store}>
                     <div className="App">
-                        <div className="jumbotron">
-                            <div className="container"></div>
-                        </div>
                         <div className="container">
-                            <ButtonsRow />
+                            <Navigation />
                             <Route exact path="/" component={() => (<ProductsView />)}/>
                             <Route path="/cart" component={() => (<Cart />)}/>
                         </div>

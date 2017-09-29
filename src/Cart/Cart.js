@@ -14,7 +14,7 @@ class Cart extends Component {
             return (
                 <td>
                     <h5>{product.product}</h5>
-                    <div><b>{product.unitprice}</b><small> unit price</small></div>
+                    <div><b>{parseFloat(product.unitprice).toFixed(2)}</b><small> unit price</small></div>
                 </td>
             )
         }

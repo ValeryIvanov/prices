@@ -2,7 +2,8 @@ import {extendObservable, action} from 'mobx';
 import $ from 'jquery';
 
 export default class AppStore {
-    constructor() {
+    constructor(cartStore) {
+        this.cartStore = cartStore;
         extendObservable(this, {
             maxima: [],
             selver: [],
@@ -10,6 +11,16 @@ export default class AppStore {
             prisma: [],
             product: '',
             viewProducts: true,
+            typingTimeout: null,
+            updateProducts: action(() => {
+                clearTimeout(this.typingTimeout);
+                this.typingTimeout = setTimeout(() => {
+                    if (!this.cartStore.selectedMaximaProduct) this.updateMaximaProducts();
+                    if (!this.cartStore.selectedSelverProduct) this.updateSelverProducts();
+                    if (!this.cartStore.selectedCoopProduct) this.updateCoopProducts();
+                    if (!this.cartStore.selectedPrismaProduct) this.updatePrismaProducts();
+                }, 500);
+            }),
             updateMaximaProducts: action(() => {
                 $.get(
                     'api/maxima?q=' + this.product,

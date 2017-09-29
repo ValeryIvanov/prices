@@ -29,16 +29,16 @@ export default class CartStore {
                     this.selectedPrismaProduct === null;
             },
             get maximaTotalPrice() {
-                return this.maxima.reduce((a, b) => a += parseFloat(b.unitprice), 0);
+                return this.maxima.reduce((a, b) => a += parseFloat(b.unitprice), 0).toFixed(2);
             },
             get coopTotalPrice() {
-                return this.coop.reduce((a, b) => a += parseFloat(b.unitprice), 0);
+                return this.coop.reduce((a, b) => a += parseFloat(b.unitprice), 0).toFixed(2);
             },
             get selverTotalPrice() {
-                return this.selver.reduce((a, b) => a += parseFloat(b.unitprice), 0);
+                return this.selver.reduce((a, b) => a += parseFloat(b.unitprice), 0).toFixed(2);
             },
             get prismaTotalPrice() {
-                return this.prisma.reduce((a, b) => a += parseFloat(b.unitprice), 0);
+                return this.prisma.reduce((a, b) => a += parseFloat(b.unitprice), 0).toFixed(2);
             },
         });
     }

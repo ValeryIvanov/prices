@@ -3,7 +3,7 @@ import CartStore from './CartStore';
 
 export default class Store {
     constructor() {
-        this.appStore = new AppStore();
         this.cartStore = new CartStore();
+        this.appStore = new AppStore(this.cartStore);
     }
 }

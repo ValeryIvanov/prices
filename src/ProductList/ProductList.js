@@ -18,7 +18,7 @@ class ProductList extends Component {
         } = this.props;
         return (
             <div className="col-md-3">
-                <h1>{name}</h1>
+                <h3>{name}</h3>
                 <ListGroup>
                     {this.props.items.map((item, i) => (
                         <ListGroupItem

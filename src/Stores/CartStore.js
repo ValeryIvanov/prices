@@ -13,6 +13,7 @@ export default class CartStore {
             selectedCoopProduct: null,
             selectedPrismaProduct: null,
             cartName: '',
+            carts: [],
             addProductsToCart: action(() => {
                 this.coop.push(this.selectedCoopProduct.product);
                 this.maxima.push(this.selectedMaximaProduct.product);
@@ -62,6 +63,13 @@ export default class CartStore {
                     this.cart,
                     (response) => {
                         console.log(response);
+                    });
+            }),
+            updateCarts: action(() => {
+                $.get(
+                    'api/cart',
+                    (response) => {
+                        this.carts = response;
                     });
             }),
         });

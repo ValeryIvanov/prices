@@ -10,7 +10,6 @@ export default class AppStore {
             coop: [],
             prisma: [],
             product: '',
-            viewProducts: true,
             typingTimeout: null,
             updateProducts: action(() => {
                 clearTimeout(this.typingTimeout);

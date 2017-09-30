@@ -8,6 +8,7 @@ export default class CartStore {
             selver: [],
             coop: [],
             prisma: [],
+            selectedCart: null,
             selectedMaximaProduct: null,
             selectedSelverProduct: null,
             selectedCoopProduct: null,

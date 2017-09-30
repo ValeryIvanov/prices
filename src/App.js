@@ -7,7 +7,8 @@ import {
   Route,
 } from 'react-router-dom';
 import Store from './Stores/Store';
-import Cart from './Cart/Cart';
+import CurrentCart from './Cart/CurrentCart';
+import Carts from './Carts/Carts';
 import './App.css';
 
 class App extends Component {
@@ -27,7 +28,8 @@ class App extends Component {
                         <div className="container">
                             <Navigation />
                             <Route exact path="/" component={() => (<ProductsView />)}/>
-                            <Route path="/cart" component={() => (<Cart />)}/>
+                            <Route path="/cart" component={() => (<CurrentCart />)}/>
+                            <Route path="/carts" component={() => (<Carts />)}/>
                         </div>
                     </div>
                 </Provider>

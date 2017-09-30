@@ -12,11 +12,14 @@ class Navigation extends Component {
                     </Navbar.Brand>
                 </Navbar.Header>
                 <Nav>
-                    <IndexLinkContainer to={`/`}>
+                    <IndexLinkContainer to={'/'}>
                         <NavItem>Products</NavItem>
                     </IndexLinkContainer >
-                    <IndexLinkContainer to={`/cart`}>
+                    <IndexLinkContainer to={'/cart'}>
                         <NavItem>Cart</NavItem>
+                    </IndexLinkContainer >
+                    <IndexLinkContainer to={'/carts'}>
+                        <NavItem>Carts</NavItem>
                     </IndexLinkContainer >
                 </Nav>
             </Navbar>
